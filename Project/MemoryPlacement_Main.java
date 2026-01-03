@@ -8,6 +8,8 @@ public class MemoryPlacement_Main {
 
         // Incoming Pages to be allocated
         int[] upcomingPages = { 20, 40, 30, 100, 20 };
+        System.out.println("Total number of pages : " + upcomingPages.length);
+        System.out.println("List of pages to place (in Kb): " + java.util.Arrays.toString(upcomingPages) + ")");
 
         // Print Current Memory State
         printFinalMemory(Current_MemoryPartition);

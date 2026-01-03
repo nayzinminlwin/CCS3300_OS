@@ -1,30 +1,37 @@
 package Project;
 
-import java.util.Arrays;
-
 public class BestFit_Placement_Algorithm {
 
     public static Object[][] BestFitAlgo(Object[][] currentMemory, int[] incomingPages) {
         Object[][] newMemory = currentMemory;
 
+        // loop through each incoming page
         for (int i = 0; i < incomingPages.length; i++) {
-            int minIndex = -1;
-            int min = Integer.MAX_VALUE;
-            int lastRecentIndex = findLastRecentIndex(newMemory);
+            int minIndex = -1; // To track the index of the best fit block
+            int min = Integer.MAX_VALUE; // To track the size of the best fit block
+            int lastRecentIndex = findLastRecentIndex(newMemory); // Find the last 'R' block index
 
+            // loop through memory blocks to find the best fit
             for (int j = 0; j < newMemory.length; j++) {
-                int currentVal = (int) newMemory[j][1];
-                System.out.println(
-                        "Incoming Page Size: " + incomingPages[i] + ", Checking Memory Block Size: " + currentVal
-                                + " at Index: " + j);
+                int currentVal = (int) newMemory[j][1]; // get the value of the current memory block
+                // System.out.println(
+                // "Incoming Page Size: " + incomingPages[i] + ", Checking Memory Block Size: "
+                // + currentVal
+                // + " at Index: " + j);
+
+                // Check if block is available
                 if (newMemory[j][0].equals('A')) {
+                    // Perfect fit
                     if (currentVal == incomingPages[i]) {
                         newMemory[j][0] = 'R';
                         System.out
-                                .println("Perfect Fit Block Found at Index: " + j + " with Size: " + currentVal + "\n");
+                                .println("Perfect Fit for " + incomingPages[i] + "Kb Block Found at Index: " + j
+                                        + " with Size: " + currentVal + "\n");
                         minIndex = -2; // Indicate perfect fit found
                         break;
-                    } else if (currentVal > incomingPages[i] && currentVal < min) {
+                    }
+                    // Best fit so far
+                    else if (currentVal > incomingPages[i] && currentVal < min) {
                         min = currentVal;
                         minIndex = j;
                     }
@@ -35,10 +42,12 @@ public class BestFit_Placement_Algorithm {
             } else if (minIndex == -1) {
                 System.out.println("No suitable block found for page size: " + incomingPages[i] + "\n");
             } else {
-                System.out.println("Best Fit Block Found at Index: " + minIndex + " with Size: " + min + "\n");
+                System.out.println("Best Fit for " + incomingPages[i] + "Kb Block Found at Index: " + minIndex
+                        + " with Size: " + min + "\n");
                 newMemory[lastRecentIndex][0] = 'X';
                 newMemory = resizeMemory(newMemory, minIndex, incomingPages[i]);
             }
+            // MemoryPlacement_Main.printFinalMemory(newMemory);
         }
 
         return newMemory;
