@@ -1,15 +1,31 @@
 package Project;
 
+import java.util.Scanner;
+
 public class MemoryPlacement_Main {
     public static void main(String[] args) {
         // Initial Memory Partition Setup
         Object[][] Current_MemoryPartition = { { 'A', 100 }, { 'X', 20 }, { 'A', 80 }, { 'R', 50 }, { 'A', 50 },
                 { 'X', 120 }, { 'A', 100 } };
 
+        Scanner sc = new Scanner(System.in);
+
+        // Input for incoming pages count
+        System.out.print("Enter the number of incoming pages: ");
+        int numPages = sc.nextInt();
+
+        // input for incoming pages
+        int[] upcomingPages = new int[numPages];
+        System.out.print("Enter the sizes of upcoming pages (in Kb): ");
+        for (int i = 0; i < numPages; i++) {
+            upcomingPages[i] = sc.nextInt();
+        }
+        sc.close();
         // Incoming Pages to be allocated
-        int[] upcomingPages = { 20, 40, 30, 100, 20 };
-        System.out.println("Total number of pages : " + upcomingPages.length);
-        System.out.println("List of pages to place (in Kb): " + java.util.Arrays.toString(upcomingPages) + ")");
+        // int[] upcomingPages = { 20, 40, 30, 100, 20 };
+        // System.out.print("Total number of pages : " + upcomingPages.length);
+        // System.out.println("List of pages to place (in Kb): " +
+        // java.util.Arrays.toString(upcomingPages));
 
         // Print Current Memory State
         printFinalMemory(Current_MemoryPartition);

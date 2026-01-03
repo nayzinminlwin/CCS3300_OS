@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Optimal_Replacement_Algorithm {
 
     public static void Optimal_Replacement_Algo(int[] pages, int frames) {
-        ArrayList<Integer> memorySpace = new ArrayList<>();
+        ArrayList<Integer> memorySpace = new ArrayList<>(); // main memory space
         ArrayList<Integer> lastUsed = new ArrayList<>(); // Track last used times
         int pageFaults = 0;
 
@@ -15,8 +15,8 @@ public class Optimal_Replacement_Algorithm {
             if (!memorySpace.contains(pages[i])) {
                 pageFaults++;
 
+                // Memory has space, just add the page
                 if (memorySpace.size() < frames) {
-                    // Memory has space, just add the page
                     memorySpace.add(pages[i]);
                     lastUsed.add(i);
                 } else {
@@ -31,11 +31,13 @@ public class Optimal_Replacement_Algorithm {
                         for (int j = 0; j < memorySpace.size(); j++) {
                             int nextUse = findNextOccurrence(i + 1, pages, memorySpace.get(j));
 
+                            // not found in future, replace this page
                             if (nextUse == -1) {
                                 pageToReplacePos = j;
                                 break;
                             }
 
+                            // page with the farthest next use
                             if (nextUse > farthestIndex) {
                                 farthestIndex = nextUse;
                                 pageToReplacePos = j;
@@ -54,7 +56,9 @@ public class Optimal_Replacement_Algorithm {
                         }
                     }
 
+                    // Replace the page
                     memorySpace.set(pageToReplacePos, pages[i]);
+                    // Update last used time
                     lastUsed.set(pageToReplacePos, i);
                 }
 
