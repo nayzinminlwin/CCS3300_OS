@@ -47,10 +47,11 @@ public class MemoryPlacement_Main {
 
         // 3. Print the final box
         System.out.println("Current Memory Map:");
+        System.out.println("(Status: A=Available, X=Used, R=Recent)");
         System.out.println(border);
-        System.out.println(rowStatus + "  (Status: A=Avail, X=Used, R=Recent)");
+        System.out.println(rowStatus);
         System.out.println(border);
-        System.out.println(rowSize + "  (Size in Kb)");
+        System.out.println(rowSize);
         System.out.println(border);
         System.out.println(); // Empty line for spacing
     }
