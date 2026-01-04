@@ -18,7 +18,7 @@ public class FirstFit_Placement_Algorithm {
 		
 		//Enter page sizes
 		int[] upcomingPages = new int[pages];
-		System.out.print("Enter sizes of upcoming pages: ");
+		System.out.print("Enter sizes of upcoming pages (in kB): ");
 		for (int i = 0 ; i<pages ; i ++) {
 			upcomingPages[i] = sc.nextInt();
 		}
@@ -58,7 +58,7 @@ public class FirstFit_Placement_Algorithm {
 		//Result Display
 		System.out.println("Result: ");
 		for (int i =0; i<OgMemory.length; i++) {
-			if (placements[i] != null) 
+			if (placements[i] != null) //Check whether the placements are empty
 				System.out.print(placements[i] + ",");
 			else 
 				System.out.print(OgMemory[i][1] + ",");	
@@ -70,4 +70,5 @@ public class FirstFit_Placement_Algorithm {
 		
 		
 	
+
 
