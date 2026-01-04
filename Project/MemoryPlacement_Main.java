@@ -31,10 +31,19 @@ public class MemoryPlacement_Main {
         printFinalMemory(Current_MemoryPartition);
 
         // Apply Best Fit Placement Algorithm
-        Object[][] Final_Memory = BestFit_Placement_Algorithm.BestFitAlgo(Current_MemoryPartition, upcomingPages);
+        System.out.println("\nApplying Best Fit Placement Algorithm...\n");
+        Object[][] Final_Memory = BestFit_Placement_Algorithm.BestFitAlgo(Current_MemoryPartition,
+                upcomingPages);
 
         // Print Final Memory State after allocation
         printFinalMemory(Final_Memory);
+
+        System.out.println("\nApplying First Fit Placement Algorithm...\n");
+        // Apply First Fit Placement Algorithm
+        Object[][] Final_Memory0 = FirstFit_Placement_Algorithm.FirstFitAlgo(Current_MemoryPartition, upcomingPages);
+
+        // Print Final Memory State after allocation
+        printFinalMemory(Final_Memory0);
 
     }
 
