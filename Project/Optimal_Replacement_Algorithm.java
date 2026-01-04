@@ -44,7 +44,8 @@ public class Optimal_Replacement_Algorithm {
 
                     // If there are pages not used in future, use LRU among them
                     if (!notUsedInFuture.isEmpty()) {
-                        System.out.println("Pages not used in future: " + notUsedInFuture.size() + " pages");
+                        // System.out.println("Pages not used in future: " + notUsedInFuture.size() + "
+                        // pages");
                         int lruTime = Integer.MAX_VALUE;
 
                         for (int pos : notUsedInFuture) {
