@@ -27,7 +27,7 @@ public class LRU_Replacement_Algorithm {
 				}
 				
 				else {	//Find a page to replace
-					int lru = Integer.MAX_VALUE;
+					int lru = Integer.MAX_VALUE; //Used as a baseline
 					int pageToReplace =-1 ;
 					
 					for (int j =0; j<memory.size(); j ++) { 
@@ -55,3 +55,4 @@ public class LRU_Replacement_Algorithm {
 		System.out.println("\nTotal page Faults(LRU): " + pFaults);
 	}
 }	
+
