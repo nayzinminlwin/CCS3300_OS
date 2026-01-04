@@ -33,7 +33,7 @@ public class FIFO {
                 pageFaults++;
 
                 if (memory.size() == frames) {
-                    int removed = memory.poll(); // FIFO removal
+                    memory.poll(); // FIFO removal
                 }
 
                 memory.add(page);
