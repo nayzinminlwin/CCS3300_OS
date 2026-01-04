@@ -20,40 +20,42 @@ public class Optimal_Replacement_Algorithm {
                     memorySpace.add(pages[i]);
                     lastUsed.add(i);
                 } else {
-                    int remainingPages = pages.length - (i + 1);
                     int pageToReplacePos = -1;
 
-                    // If we have enough future pages to check all frames
-                    if (remainingPages >= frames) {
-                        // Use Optimal algorithm
-                        int farthestIndex = -1;
+                    // Find pages that won't be used in future
+                    ArrayList<Integer> notUsedInFuture = new ArrayList<>();
+                    int farthestIndex = -1;
+                    int farthestPos = -1;
 
-                        for (int j = 0; j < memorySpace.size(); j++) {
-                            int nextUse = findNextOccurrence(i + 1, pages, memorySpace.get(j));
+                    for (int j = 0; j < memorySpace.size(); j++) {
+                        int nextUse = findNextOccurrence(i + 1, pages, memorySpace.get(j));
 
-                            // not found in future, replace this page
-                            if (nextUse == -1) {
-                                pageToReplacePos = j;
-                                break;
-                            }
-
-                            // page with the farthest next use
+                        if (nextUse == -1) {
+                            // This page won't be used in remaining references
+                            notUsedInFuture.add(j);
+                        } else {
+                            // Track the page with farthest next use
                             if (nextUse > farthestIndex) {
                                 farthestIndex = nextUse;
-                                pageToReplacePos = j;
+                                farthestPos = j;
+                            }
+                        }
+                    }
+
+                    // If there are pages not used in future, use LRU among them
+                    if (!notUsedInFuture.isEmpty()) {
+                        System.out.println("Pages not used in future: " + notUsedInFuture.size() + " pages");
+                        int lruTime = Integer.MAX_VALUE;
+
+                        for (int pos : notUsedInFuture) {
+                            if (lastUsed.get(pos) < lruTime) {
+                                lruTime = lastUsed.get(pos);
+                                pageToReplacePos = pos;
                             }
                         }
                     } else {
-                        // Not enough future references, use LRU
-                        System.out.println("Using LRU fallback (not enough future references)");
-                        int lruTime = Integer.MAX_VALUE;
-
-                        for (int j = 0; j < memorySpace.size(); j++) {
-                            if (lastUsed.get(j) < lruTime) {
-                                lruTime = lastUsed.get(j);
-                                pageToReplacePos = j;
-                            }
-                        }
+                        // All pages will be used in future, replace the one used farthest
+                        pageToReplacePos = farthestPos;
                     }
 
                     // Replace the page
