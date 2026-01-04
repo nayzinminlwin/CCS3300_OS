@@ -5,25 +5,7 @@ import java.util.Scanner;
 
 public class FirstFit_Placement_Algorithm {
 
-	public static void main(String[]Args) {
-		
-		//Original Memory Partition (A=available, X=Occupied, R = Most Recent)
-		Object[][] OgMemory = { { 'A', 100 }, { 'X', 20 }, { 'A', 80 }, { 'R', 50 }, { 'A', 50 },
-                { 'X', 120 }, { 'A', 100 } };
-		
-		Scanner sc = new Scanner(System.in);
-		//User enter amount of pages added
-		System.out.print("Enter number of incoming pages: ");
-		int pages = sc.nextInt();
-		
-		//Enter page sizes
-		int[] upcomingPages = new int[pages];
-		System.out.print("Enter sizes of upcoming pages (in kB): ");
-		for (int i = 0 ; i<pages ; i ++) {
-			upcomingPages[i] = sc.nextInt();
-		}
-		
-		
+	
 		//FirstFit Algorithm
 		Integer [] placements = new Integer [OgMemory.length];	//Integer is needed to be able to store NULL
 		
@@ -45,15 +27,13 @@ public class FirstFit_Placement_Algorithm {
 				break;	}
 			
 		}
+}
 		
 		//Error detection
 		if (!placed) {
 			System.out.print("Error: Insufficient Memory");
-			sc.close();
 			return;	}
-		}
 		
-		sc.close();
 		
 		//Result Display
 		System.out.println("Result: ");
@@ -64,11 +44,12 @@ public class FirstFit_Placement_Algorithm {
 				System.out.print(OgMemory[i][1] + ",");	
 				}
 			}
-		}
+		
 		
 		
 		
 		
 	
+
 
 
