@@ -29,6 +29,7 @@ public class FIFO {
 
             if (memory.contains(page)) {
                 System.out.println("Page " + page + " already in memory: " + memory);
+                // sth here.
             } else {
                 pageFaults++;
 
