@@ -1,4 +1,4 @@
-package first_fit;
+package Project;
 
 public class FirstFit_Placement_Algorithm {
 
